@@ -1,0 +1,2 @@
+alias: ttki
+password: ttkittki
