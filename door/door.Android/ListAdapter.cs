@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using Android.Views;
 using Android.Widget;
 using Android.Content;
-using static Android.Renderscripts.Sampler;
 
 namespace door.Droid
 {
     public class ListAdapter : BaseAdapter<Lock>
     {
+        public event EventHandler<LockStatusChangedEventArgs> LockStatusChanged;
+
         Context context;
 
         List<Lock> locks = new List<Lock>();

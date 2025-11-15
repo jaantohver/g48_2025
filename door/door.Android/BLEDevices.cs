@@ -5,12 +5,11 @@
 
 using System;
 using System.Linq;
+using System.Text;
 using System.Collections.Generic;
 
-using Android.OS;
 using Android.Bluetooth;
 using Android.Bluetooth.LE;
-using System.Text;
 
 namespace door.Droid
 {
@@ -36,11 +35,9 @@ namespace door.Droid
 
             if (result.ScanRecord != null && result.ScanRecord.GetBytes().Length > 0)
             {
-                if (result.ScanRecord.DeviceName!= null && result.ScanRecord.DeviceName.ToLower().Contains("loockit"))
+                if (result.ScanRecord.DeviceName != null && result.ScanRecord.DeviceName.ToLower().Contains("loockit"))
                 {
-                    //16th byte, 0 closed, 1 open
-                    Console.WriteLine(result.ScanRecord.GetBytes()[16]);
-
+                    //15th byte, 0 closed, 1 open
                     LockStatusChangedEventArgs args = new LockStatusChangedEventArgs();
                     args.IsOpen = result.ScanRecord.GetBytes()[16] == 0;
                     args.DeviceId = 123;
@@ -50,7 +47,7 @@ namespace door.Droid
             }
 
             if (result.ScanRecord != null && result.ScanRecord.GetBytes().Length > 0 &&
-                System.Text.Encoding.UTF8.GetString(result.ScanRecord.GetBytes()).ToUpper().Contains(identifier))
+                Encoding.UTF8.GetString(result.ScanRecord.GetBytes()).ToUpper().Contains(identifier))
             {
                 lock (bluetoothDevices)
                 {

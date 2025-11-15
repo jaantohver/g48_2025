@@ -39,20 +39,6 @@ namespace door.iOS
 			tableView.Frame = Bounds;
         }
 
-		public void Update(List<WorkArea> areas)
-		{
-			if (areas.Count == 0)
-			{
-				noAreasLabel.Text = "Töötajaga ei ole seotud ühtegi töömaad";
-				noAreasLabel.Hidden = false;
-            }
-			else
-			{
-                noAreasLabel.Hidden = true;
-                (tableView.Source as AreasTableViewSource).Update(areas, tableView);
-			}
-		}
-
 		public void SetNoWorker()
 		{
 			noAreasLabel.Text = "Töötaja on isikustamata";

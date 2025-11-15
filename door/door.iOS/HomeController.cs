@@ -175,29 +175,6 @@ namespace door.iOS
             AreasController controller = new AreasController(true);
             controller.AreaSelected += async (sender, e) =>
             {
-                //FIXME
-                if (await Networking.StartWork(NSUserDefaults.StandardUserDefaults.StringForKey("uid"), e))
-                {
-                    start = DateTime.Now;
-                    NSUserDefaults.StandardUserDefaults.SetString(start.ToString(), "start");
-                    state = State.Running;
-
-                    contentView.SetStop();
-
-                    timer = new Timer(1000);
-                    timer.AutoReset = true;
-                    timer.Elapsed += delegate
-                    {
-                        TimeSpan ts = DateTime.Now - start;
-
-                        contentView.SetTimerString(TimeUtil.GetHourMinuteSecondString(ts));
-                    };
-                    timer.Start();
-                }
-                else
-                {
-                    //TODO
-                }
             };
 
             UINavigationController navController = new UINavigationController(controller);
@@ -207,23 +184,6 @@ namespace door.iOS
 
         async void Stop()
         {
-            LogController.Log("Stop");
-
-            if (await Networking.StopWork(NSUserDefaults.StandardUserDefaults.StringForKey("uid")))
-            {
-                timer.Stop();
-                timer.Dispose();
-
-                start = DateTime.MinValue;
-                NSUserDefaults.StandardUserDefaults.SetString("", "start");
-                state = State.Idle;
-
-                contentView.SetStart();
-                contentView.SetTimerString("00:00:00");
-            } else
-            {
-                //TODO
-            }
         }
 
         void ScanQr(UIAlertAction a)

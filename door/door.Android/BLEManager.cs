@@ -13,7 +13,7 @@ namespace door.Droid
 {
     public class BLEManager
     {
-        public event EventHandler<LockStatusChangedEventArgs> LockStatusChanged;
+        public static event EventHandler<LockStatusChangedEventArgs> LockStatusChanged;
 
         static BLEManager current;
 
@@ -45,7 +45,7 @@ namespace door.Droid
             devices = new BLEDevices(this);
             devices.LockStatusChanged += (sender, e) =>
             {
-                current.mainActivity.LockStatusChanged(e.DeviceId, e.IsOpen);
+                LockStatusChanged?.Invoke(this, e);
             };
             bleCommandQueue = new BLECommandQueue(this);
             bleSearchCallbacks = new BLESearchCallback();

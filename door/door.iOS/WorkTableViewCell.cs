@@ -44,12 +44,5 @@ namespace door.iOS
 				Frame.Height / 3
 			);
         }
-
-		public void Update(WorkArea area, Work work)
-		{
-			workAreaLabel.Text = area.Name;
-
-			timeLabel.Text = work.Start + " - " + work.Stop;
-		}
     }
 }

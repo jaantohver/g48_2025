@@ -14,7 +14,7 @@
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <!--<item name="colorAccent">#FF4081</item>-->
-    <item name="colorPrimaryDark">#CB5D64</item>
+    <item name="colorPrimaryDark">#3d3d3d</item>
   </style>
   <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
     <item name="cornerFamily">rounded</item>

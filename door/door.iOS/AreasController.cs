@@ -55,9 +55,6 @@ namespace door.iOS
             }
             else
             {
-                List<WorkArea> areas = await Networking.GetWorkAreas(uid);
-
-                contentView.Update(areas);
             }
 
             UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;

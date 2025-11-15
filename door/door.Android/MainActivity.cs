@@ -11,6 +11,8 @@ using Android.Content.PM;
 using AndroidX.AppCompat.App;
 
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+using Android.Graphics;
+using AndroidX.Core.Content.Resources;
 
 namespace door.Droid
 {
@@ -32,6 +34,8 @@ namespace door.Droid
         readonly List<Lock> locks = new List<Lock>();
 
         ListView lv;
+        TextView lastSeen;
+        ImageView lockImage, backgroundImage;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -40,12 +44,25 @@ namespace door.Droid
             SetContentView(Resource.Layout.activity_main);
 
             Toolbar myToolbar = FindViewById<Toolbar>(Resource.Id.my_toolbar);
+            myToolbar.SetBackgroundColor(Android.Graphics.Color.ParseColor("#3d3d3d"));
             myToolbar.SetNavigationIcon(Resource.Drawable.ic_logo_wide);
             myToolbar.Title = "";
             SetSupportActionBar(myToolbar);
 
+            lockImage = FindViewById<ImageView>(Resource.Id.lock_icon);
+
+            backgroundImage = FindViewById<ImageView>(Resource.Id.lock_bg);
+
             lv = FindViewById<ListView>(Resource.Id.list);
             lv.Adapter = new ListAdapter(this);
+
+            //Typeface typeface = ResourcesCompat.GetFont(this, Resources.GetFont(Resource.Id.ppp);
+
+            FindViewById<TextView>(Resource.Id.name).Typeface = Typeface.CreateFromAsset(Assets, "PPPangramSansRoundedMedium.otf");
+
+            FindViewById<TextView>(Resource.Id.last_seen).Typeface = Typeface.CreateFromAsset(Assets, "PPPangramSansRoundedMedium.otf");
+
+            lastSeen = FindViewById<TextView>(Resource.Id.last_seen);
 
             Lock l1 = new Lock();
             l1.Name = "Lukk 1";
@@ -62,9 +79,9 @@ namespace door.Droid
             l3.LastSeenTimestamp = 1763151909;
             l3.IsLocked = true;
 
-            locks.Add(l1);
-            locks.Add(l2);
-            locks.Add(l3);
+            //locks.Add(l1);
+            //locks.Add(l2);
+            //locks.Add(l3);
 
             (lv.Adapter as ListAdapter).Update(locks);
         }
@@ -82,6 +99,15 @@ namespace door.Droid
         protected override void OnResume()
         {
             base.OnResume();
+
+            BLEManager.LockStatusChanged += OnLockStatusChanged;
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            BLEManager.LockStatusChanged -= OnLockStatusChanged;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -89,6 +115,17 @@ namespace door.Droid
             MenuInflater.Inflate(Resource.Menu.menu, menu);
 
             return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            //Hacky
+            if (item.ItemId == 2131230790)
+            {
+                StartActivity(typeof(AddNewActivity));
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -104,29 +141,45 @@ namespace door.Droid
             }
         }
 
-        public void LockStatusChanged(int deviceId, bool isOpen)
+        void RequestPermissions()
         {
-            if (locks.Any(l => l.Id == deviceId))
-            {
-                locks.Find(l => l.Id == deviceId).IsLocked = !isOpen;
+            RequestPermissions(permissionList, 98765);
+        }
 
-                (lv.Adapter as ListAdapter).Update(locks);
+        void OnLockStatusChanged(object sender, LockStatusChangedEventArgs e)
+        {
+            Console.WriteLine("[MainActivity] OnLockStatusChanged");
+
+            if(e.IsOpen)
+            {
+                lockImage.SetImageResource(Resource.Drawable.ic_lock_open);
+                backgroundImage.SetImageResource(Resource.Drawable.ic_button_bg_red);
             } else
             {
+                lockImage.SetImageResource(Resource.Drawable.ic_lock);
+                backgroundImage.SetImageResource(Resource.Drawable.ic_button_bg_blue);
+            }
+
+            if (locks.Any(l => l.Id == e.DeviceId))
+            {
+                locks.Find(l => l.Id == e.DeviceId).IsLocked = !e.IsOpen;
+
+                (lv.Adapter as ListAdapter).Update(locks);
+            }
+            else
+            {
                 Lock l = new Lock();
-                l.Id = deviceId;
-                l.IsLocked = !isOpen;
+                l.Name = "Front door";
+                l.Id = e.DeviceId;
+                l.IsLocked = !e.IsOpen;
                 l.LastSeenTimestamp = 123;
 
                 locks.Add(l);
 
                 (lv.Adapter as ListAdapter).Update(locks);
             }
-        }
 
-        void RequestPermissions()
-        {
-            RequestPermissions(permissionList, 98765);
+
         }
     }
 }

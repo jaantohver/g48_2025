@@ -33,10 +33,5 @@ namespace door.iOS
 				Frame.Height
 			);
         }
-
-		public void Update(WorkArea area)
-		{
-			nameLabel.Text = area.Name;
-		}
     }
 }
