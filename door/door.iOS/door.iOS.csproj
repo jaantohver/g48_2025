@@ -29,6 +29,7 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>VS: com.terake.door Development</CodesignProvision>
     <CodesignKey>Apple Development: Jaan Tohver (7FQL8RWH79)</CodesignKey>
+    <MtouchSdkVersion>18.5</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -78,22 +79,14 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TabBarController.cs" />
-    <Compile Include="HomeController.cs" />
-    <Compile Include="AreasController.cs" />
-    <Compile Include="WorksController.cs" />
     <Compile Include="HomeView.cs" />
-    <Compile Include="AreasView.cs" />
-    <Compile Include="WorksView.cs" />
     <None Include="packages.config" />
-    <Compile Include="AreasTableViewSource.cs" />
-    <Compile Include="AreaTableViewCell.cs" />
-    <Compile Include="WorksTableViewSource.cs" />
-    <Compile Include="WorkTableViewCell.cs" />
-    <Compile Include="QRScanController.cs" />
-    <Compile Include="LogController.cs" />
     <Compile Include="LogView.cs" />
     <None Include=".DS_Store" />
+    <Compile Include="MainController.cs" />
+    <Compile Include="MainController.designer.cs">
+      <DependentUpon>MainController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -118,6 +111,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\152.png" />
+    <InterfaceDefinition Include="MainController.xib" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -127,38 +121,32 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.4\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Toast">
       <HintPath>..\..\packages\Toast.iOS.1.2.0\lib\xamarinios10\Toast.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK-1.0" />
     <Reference Include="Microsoft.AppCenter">
-      <HintPath>..\..\packages\Microsoft.AppCenter.5.0.3\lib\Xamarin.iOS10\Microsoft.AppCenter.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AppCenter.5.0.7\lib\Xamarin.iOS10\Microsoft.AppCenter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AppCenter.Crashes">
-      <HintPath>..\..\packages\Microsoft.AppCenter.Crashes.5.0.3\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AppCenter.Crashes.5.0.7\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AppCenter.Analytics">
-      <HintPath>..\..\packages\Microsoft.AppCenter.Analytics.5.0.3\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Buffers">
-      <HintPath>..\..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AppCenter.Analytics.5.0.7\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory">
-      <HintPath>..\..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.core">
-      <HintPath>..\..\packages\SQLitePCLRaw.core.2.1.2\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.core.3.0.2\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.provider.sqlite3">
-      <HintPath>..\..\packages\SQLitePCLRaw.provider.sqlite3.2.1.2\lib\netstandard2.0\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.provider.sqlite3.3.0.2\lib\netstandard2.0\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2">
-      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.2.1.2\lib\xamarinios10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.2.1.11\lib\xamarinios10\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Drawing.Common.dll" />

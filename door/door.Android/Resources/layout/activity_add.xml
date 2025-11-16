@@ -33,10 +33,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FAF5DD">
+        android:background="#2d2d2d">
         <TextView
             android:text="No new devices found nearby."
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="25sp"
             android:textAlignment="center"
             android:gravity="center"

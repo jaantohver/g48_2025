@@ -81,6 +81,16 @@
                 android:textSize="35sp"
                 android:text="Front door"/>
             <TextView
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:text="N/A"/>
+            <TextView
                 android:id="@+id/last_seen"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -89,8 +99,8 @@
                 android:gravity="center"
                 android:paddingBottom="25dp"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:text="Last seen:\n00:00 ago"
+                android:textSize="12sp"
+                android:text="00:00 ago"
                 android:lines="2"/>
         </LinearLayout>
     </RelativeLayout>

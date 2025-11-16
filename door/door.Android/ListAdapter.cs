@@ -46,7 +46,7 @@ namespace door.Droid
             long lastSeen = nowTs - l.LastSeenTimestamp;
 
             TextView lastSeenLabel = view.FindViewById<TextView>(Resource.Id.last_seen);
-            lastSeenLabel.Text = "Last seen " + lastSeen.ToTimeString() + " ago";
+            lastSeenLabel.Text = lastSeen.ToTimeString() + " ago";
 
             ImageView lockImage = view.FindViewById<ImageView>(Resource.Id.lock_icon);
 

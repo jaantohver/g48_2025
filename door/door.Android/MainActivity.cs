@@ -34,7 +34,7 @@ namespace door.Droid
         readonly List<Lock> locks = new List<Lock>();
 
         ListView lv;
-        TextView lastSeen;
+        TextView lastSeen, status;
         ImageView lockImage, backgroundImage;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -63,6 +63,8 @@ namespace door.Droid
             FindViewById<TextView>(Resource.Id.last_seen).Typeface = Typeface.CreateFromAsset(Assets, "PPPangramSansRoundedMedium.otf");
 
             lastSeen = FindViewById<TextView>(Resource.Id.last_seen);
+
+            status = FindViewById<TextView>(Resource.Id.status);
 
             Lock l1 = new Lock();
             l1.Name = "Lukk 1";
@@ -146,18 +148,23 @@ namespace door.Droid
             RequestPermissions(permissionList, 98765);
         }
 
+        int counter = 0;
+
         void OnLockStatusChanged(object sender, LockStatusChangedEventArgs e)
         {
-            Console.WriteLine("[MainActivity] OnLockStatusChanged");
+            counter++;
+            Console.WriteLine("[MainActivity] OnLockStatusChanged " + counter);
 
             if(e.IsOpen)
             {
                 lockImage.SetImageResource(Resource.Drawable.ic_lock_open);
                 backgroundImage.SetImageResource(Resource.Drawable.ic_button_bg_red);
+                status.Text = "Unlocked";
             } else
             {
                 lockImage.SetImageResource(Resource.Drawable.ic_lock);
                 backgroundImage.SetImageResource(Resource.Drawable.ic_button_bg_blue);
+                status.Text = "Locked";
             }
 
             if (locks.Any(l => l.Id == e.DeviceId))

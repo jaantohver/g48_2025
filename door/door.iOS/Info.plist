@@ -5,40 +5,42 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>15.0</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>NSExtensionPointName</key>
+			<string>NSExtensionPointName</string>
+		</dict>
+		<key>NSExtensionMainStoryboard</key>
+		<string>NSExtensionMainStoryboard</string>
+		<key>NSExtensionPointIdentifier</key>
+		<string>NSExtensionPointIdentifier</string>
+	</dict>
 	<key>CFBundleDisplayName</key>
-	<string>Terake Lite</string>
+	<string>Loockit</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.terake.ttki</string>
+	<string>com.g48.door</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>ttki</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>NSCameraUsageDescription</key>
-	<string>QR koodi lugemine</string>
-	<key>NFCReaderUsageDescription</key>
-	<string>RFID kaardi tuvastamine</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>0.1</string>
 	<key>CFBundleVersion</key>
-	<string>13</string>
+	<string>1</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>
